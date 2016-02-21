@@ -1,0 +1,15 @@
+<html>
+  <head>
+    <!-- Mixmax SDK -->
+    <script defer src="https://d1xa36cy0xt122.cloudfront.net/v1/Mixmax.js"></script>
+  </head>
+  <body>
+    <button id="yo">yo</button>
+    <script>
+      var button = document.getElementById('yo');
+      button.onclick = function(e) {
+        Mixmax.done({"name": "Simon"});
+      };
+    </script>
+  </body>
+</html>
