@@ -27,6 +27,11 @@ var corsOptions = {
 // The editor interface.
 app.get('/editor', function(req, res) {
   console.log(req.query);
+  if (req.query.data) {
+    req.query.data = JSON.parse(req.query.data);
+  } else {
+    req.query.data = {};
+  }
   res.render('editor', req.query);
 });
 

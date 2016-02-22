@@ -5,7 +5,12 @@
     <link rel="stylesheet" type="text/css" href="css/editor.css" />
   </head>
   <body>
-    <input id="caption" type="text" placeholder="file request caption" />
+    <input id="caption" type="text"
+           placeholder="file request caption"
+    <% if (data && data.caption) { %>
+           value="<%= data.caption %>"
+    <% } %>
+     />
     <button id="upload-button">generate file request</button>
     <button id="cancel-button">cancel</button>
     <script>
