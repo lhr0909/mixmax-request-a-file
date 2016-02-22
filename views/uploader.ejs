@@ -1,0 +1,55 @@
+<html>
+  <head>
+  </head>
+  <body>
+    <input id="upload-file" type="file" />
+    <button id="upload-button">upload</button>
+    <button id="cancel-button">cancel</button>
+    <script src="js/vendor/aws-sdk-2.2.37.min.js"></script>
+    <script>
+      var awsParams = {
+        region: "us-west-2",
+        apiVersion: "2006-03-01",
+        accessKeyId: "AKIAJOEQJEFTGFAPWI5Q",
+        secretAccessKey: "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"
+      };
+      var s3 = new AWS.S3(awsParams);
+
+      var uploadButton = document.getElementById('upload-button');
+      var fileInput = document.getElementById('upload-file');
+      var fileReader = new FileReader();
+
+      uploadButton.onclick = function(e) {
+        var file = fileInput.files[0];
+        var s3FileName = new Date().getTime() + "_<%= requester %>_<%= provider %>_" + file.name;
+
+        fileReader.onload = function(e) {
+          var fileBuffer = e.target.result;
+          var s3Params = {
+            Bucket: "mixmax-file-requests",
+            Key: s3FileName,
+            Body: fileBuffer,
+            //ContentType: file.type,
+            ContentLength: file.size
+          };
+          s3.putObject(s3Params, function(err, data) {
+            if (err) {
+              console.log(err, err.stack);
+            } else {
+              console.log(data);
+              alert("Upload Successful! Thanks!");
+              window.close();
+            }
+          });
+        };
+
+        var fileBuffer = fileReader.readAsArrayBuffer(file);
+      };
+
+      var cancelButton = document.getElementById('cancel-button');
+      cancelButton.onclick = function(e) {
+        window.close();
+      };
+    </script>
+  </body>
+</html>

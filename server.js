@@ -1,11 +1,16 @@
+//adding babel for ES6 and JSX support
 require('babel-register');
 require('babel-polyfill');
+
 var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
 var cors = require('cors');
 
 var expressResolver = require('./api/resolver.jsx').default;
+
+// Using ejs
+app.set('view engine', 'ejs');
 
 // Serve assets in /public.
 app.use(express.static(__dirname + '/public'));
@@ -21,7 +26,14 @@ var corsOptions = {
 
 // The editor interface.
 app.get('/editor', function(req, res) {
-  res.sendFile(__dirname + '/editor.html');
+  console.log(req.query);
+  res.render('editor', req.query);
+});
+
+// The uploader app interface
+app.get('/uploader', function(req, res) {
+  console.log(req.query);
+  res.render('uploader', req.query);
 });
 
 // The in-email representation.

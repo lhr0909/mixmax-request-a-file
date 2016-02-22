@@ -1,0 +1,24 @@
+<html>
+  <head>
+    <!-- Mixmax SDK -->
+    <script defer src="https://d1xa36cy0xt122.cloudfront.net/v1/Mixmax.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/editor.css" />
+  </head>
+  <body>
+    <input id="caption" type="text" placeholder="file request caption" />
+    <button id="upload-button">generate file request</button>
+    <button id="cancel-button">cancel</button>
+    <script>
+      var uploadButton = document.getElementById('upload-button');
+      var text = document.getElementById('caption');
+      uploadButton.onclick = function(e) {
+        Mixmax.done({caption: text.value});
+      };
+
+      var cancelButton = document.getElementById('cancel-button');
+      cancelButton.onclick = function(e) {
+        Mixmax.cancel();
+      };
+    </script>
+  </body>
+</html>
