@@ -10,7 +10,7 @@ class UploadResolver extends React.Component {
 
     this.state = {
       caption: this.props.data.caption,
-      url: "http://192.168.1.35:8910/uploader?requester=!!!SENDER_EMAIL_URL!!!&provider=!!!EMAIL_ADDR_URL!!!"
+      url: "https://mixmax-file-requests.herokuapp.com/uploader?requester=!!!SENDER_EMAIL_URL!!!&provider=!!!EMAIL_ADDR_URL!!!"
     }
   }
 
